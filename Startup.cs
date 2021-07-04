@@ -37,7 +37,7 @@ namespace BethanyPieShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{cntroller=Home}/{action=index}/{id?}");
+                    pattern: "{controller=Home}/{action=index}/{id?}");
             });
         }
     }
