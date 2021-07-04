@@ -18,6 +18,8 @@ namespace BethanyPieShop
         {
             //register framework services
             services.AddControllersWithViews();
+
+            //register your own services(more later)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,15 +29,15 @@ namespace BethanyPieShop
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{cntroller=Home}/{action=index}/{id?}");
             });
         }
     }
