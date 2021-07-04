@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BethanyPieShop.Models
 {
-    interface ICategoryRepository
+    public interface ICategoryRepository
     {
         IEnumerable<Category> AllCategories { get; }
 
