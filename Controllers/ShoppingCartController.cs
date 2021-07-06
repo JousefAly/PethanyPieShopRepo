@@ -21,9 +21,6 @@ namespace BethanyPieShop.Controllers
 
         public ViewResult Index()
         {
-            //just populating shoppingCartItems List in the _shoppingCart before passing it to the view model.
-             _shoppingCart.GetShoppingCartItems();
-
             var shoppingCartViewModel = new ShoppingCartViewModel
             {
                 ShoppingCart = _shoppingCart,

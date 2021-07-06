@@ -105,9 +105,10 @@ namespace BethanyPieShop.Models
          */
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return _appDbContext.ShoppingCartItems
+            var items = _appDbContext.ShoppingCartItems
                 .Where(s => s.ShoppingCartId == ShoppingCartId)
                 .Include(s => s.Pie).ToList();
+            return items;
                 
         }
 
