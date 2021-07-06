@@ -13,7 +13,7 @@ namespace BethanyPieShop.Models
         private readonly AppDbContext _appDbContext;
 
         public string ShoppingCartId { get; set; }
-        public List<ShoppingCartItem> ShoppingCartItems { get; set; }
+       
         private ShoppingCart(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -55,10 +55,12 @@ namespace BethanyPieShop.Models
                     Amount = 1
                 };
                 _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
+                
             }
             else
             {
                 shoppingCartItem.Amount++;
+                
             }
             _appDbContext.SaveChanges();
         }
@@ -98,11 +100,15 @@ namespace BethanyPieShop.Models
                 .Select(s => s.Amount * s.Pie.Price).Sum();
             return total;      
         }
+        /*
+         * Populate the current shopping cart from the database. If it is populated return the items
+         */
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return ShoppingCartItems ??= _appDbContext.ShoppingCartItems
+            return _appDbContext.ShoppingCartItems
                 .Where(s => s.ShoppingCartId == ShoppingCartId)
                 .Include(s => s.Pie).ToList();
+                
         }
 
 
